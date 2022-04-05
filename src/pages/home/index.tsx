@@ -9,14 +9,28 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { Post } from "../../components/Post";
 import { api } from "../../services/api";
 import { RootObject } from "../../types/Post.types";
-import { Container } from "./styles";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import Router from "next/router";
+import styled from "styled-components";
+
+export const Container = styled.main`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 8rem;
+  padding: 2rem;
+
+  .pagination {
+    button + button {
+      margin-left: 1rem;
+    }
+  }
+`;
 
 export default function Home() {
   const [page, setPage] = useState<number>(0);
-  const username = useSelector((state: RootState) => state.username);
 
   const getData = useCallback(async () => {
     const { data } = await api.get<RootObject>(
@@ -28,7 +42,7 @@ export default function Home() {
 
   const { isLoading, isError, data, isFetching, refetch } = useQuery(
     ["posts", page],
-    () => getData(),
+    () => getData()
   );
 
   useEffect(() => {

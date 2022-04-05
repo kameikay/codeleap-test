@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useQueryClient } from "react-query";
-import { useSelector } from "react-redux";
 import { useError } from "../../hooks/useError";
-import { RootState } from "../../redux/store";
 import { api } from "../../services/api";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { InputField } from "../InputField";
-import { NewPost } from "../NewPost";
 import { Textarea } from "../Textarea";
 import { Container, Overlay } from "./styles";
 
